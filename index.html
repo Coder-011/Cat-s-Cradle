@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimuli | Neon Cat's Cradle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00FFFF">
+    <link rel="apple-touch-icon" href="icon.png">
+    
+    <!-- MediaPipe Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Background Starfield -->
+    <div id="starfield"></div>
+
+    <!-- Main Rendering Canvas -->
+    <canvas id="main-canvas"></canvas>
+
+    <!-- UI: Header & Logo -->
+    <div class="header ui-panel">
+        <div class="logo-container">
+            <img src="icon.png" alt="Stimuli Logo" class="logo-icon">
+            <span class="logo-text">STIMULI</span>
+        </div>
+    </div>
+
+    <!-- UI: Status Display -->
+    <div class="status-panel ui-panel">
+        <div class="status-label">Active Pattern</div>
+        <div id="pattern-name" class="status-value">INITIALIZING...</div>
+        
+        <div class="status-label">Hand Tracking</div>
+        <div id="hand-status" class="status-value">WAITING FOR CAMERA...</div>
+    </div>
+
+    <!-- UI: Theme Indicator -->
+    <div class="theme-panel ui-panel">
+        <div id="theme-display" class="theme-name">CYBER NEON</div>
+        <div class="status-label" style="font-size: 8px;">SPACE to change</div>
+    </div>
+
+    <!-- UI: Video Feed -->
+    <div class="video-panel ui-panel">
+        <video id="video-input"></video>
+        <div id="performance-stats" class="stats">FPS: 0 | PARTICLES: 0</div>
+    </div>
+
+    <!-- UI: Instructions -->
+    <div class="instructions-panel ui-panel">
+        <ul class="instructions-list">
+            <li><span>Hands Apart</span> <span class="key-hint">Constellation</span></li>
+            <li><span>Hands Close</span> <span class="key-hint">Mandala</span></li>
+            <li><span>Rotate Hands</span> <span class="key-hint">Spiral Galaxy</span></li>
+            <li><span>Weave Hands</span> <span class="key-hint">Woven Tapestry</span></li>
+            <li><span>Pinch Gesture</span> <span class="key-hint">Sacred Geometry</span></li>
+            <li><span>Single Hand</span> <span class="key-hint">Flower</span></li>
+            <li><span>Flip Hand</span> <span class="key-hint">Mirror Flip</span></li>
+        </ul>
+        <div class="status-label" style="margin-top: 10px; text-align: center;">Press 'H' for Help</div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div class="logo-text" style="margin-bottom: 10px;">STIMULI</div>
+        <div class="status-label">Initializing Hand Detection...</div>
+    </div>
+
+    <!-- Help Overlay -->
+    <div id="help-overlay">
+        <div class="help-content">
+            <h2 class="help-title">STIMULI COMMANDS</h2>
+            <div class="instructions-list" style="font-size: 14px;">
+                <li><span>SPACEBAR</span> <span class="key-hint">Cycle Themes</span></li>
+                <li><span>'H' Key</span> <span class="key-hint">Toggle Help</span></li>
+                <li><span>'R' Key</span> <span class="key-hint">Reset Camera</span></li>
+                <li><span>'P' Key</span> <span class="key-hint">Pause/Resume</span></li>
+                <li><span>'S' Key</span> <span class="key-hint">Save Screenshot</span></li>
+                <li><span>ESC</span> <span class="key-hint">Close Help</span></li>
+            </div>
+            <p style="margin-top: 30px; font-size: 12px; color: rgba(255,255,255,0.5); text-align: center;">
+                Move your hands in front of the camera to weave digital neon patterns.
+            </p>
+            <button onclick="document.getElementById('help-overlay').style.display='none'" style="display: block; margin: 20px auto; padding: 10px 20px; background: var(--theme-primary); border: none; border-radius: 5px; font-family: 'Orbitron'; cursor: pointer;">CLOSE</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,862 @@
+================================================================================
+                    NEON CAT'S CRADLE PATTERN WEAVER
+              Hand Gesture Interactive Web Application - Build Guide
+================================================================================
+
+Copy and paste this ENTIRE prompt into Claude Opus or Claude Sonnet to build
+the complete application.
+
+================================================================================
+                            DETAILED PROJECT BRIEF
+================================================================================
+
+Create a breathtakingly beautiful NEON CAT'S CRADLE web application where users
+can weave stunning light patterns using their hands, mimicking the real-world
+cat's cradle game but with digital magic.
+
+================================================================================
+                         PRIMARY AESTHETIC VISION
+================================================================================
+
+Style: Mystical Digital Cat's Cradle / Neon String Art
+- Theme: Interactive light painting that responds to hand gestures
+- Feel: Magical, meditative, hypnotic, playful
+- Visual Density: High - filled with glowing strings and patterns
+- Movement: Smooth, flowing, otherworldly
+- Purpose: Make people feel like they're literally weaving light with their hands
+
+Background:
+- Deep space-like gradient (black #000000 → navy #0a0a2e → deep purple #16213e)
+- Add subtle animated star field or cosmic particles in background
+- Radial glow emanating from center where hands are
+- Add vignette effect (darker edges)
+
+================================================================================
+                      CORE MECHANIC: CAT'S CRADLE WEAVING
+================================================================================
+
+What is Cat's Cradle?
+- Real cat's cradle uses string wrapped around fingers
+- Player A holds a pattern, Player B removes string from Player A's hands
+- Pattern transforms into new configuration
+- Repeats indefinitely with new patterns each time
+
+Digital Version:
+- User's hands ARE the "fingers" holding the pattern
+- Neon glowing strings connect between fingertips
+- As hands move, the pattern WEAVES and TRANSFORMS
+- Multiple geometric patterns emerge and morph
+- Colors flow and change as patterns transform
+
+================================================================================
+                    HAND TRACKING & STRING ARCHITECTURE
+================================================================================
+
+Hand Detection:
+- Use MediaPipe/TensorFlow.js to detect both hands
+- Track all 21 landmarks per hand
+- Primary focus: 10 fingertips (5 per hand) as anchor points
+
+String System (The Weaving Network):
+- Create a dynamic web of strings connecting:
+  
+  SAME HAND STRINGS:
+  - Fingertip to adjacent fingertip (thumb to index, index to middle, etc.)
+  - Fingertips to palm center
+  - Fingertips to wrist
+  
+  CROSS-HAND STRINGS:
+  - Matching fingertips between left and right hands
+  - Form a "bridge" when hands are positioned together
+  - Create mirror patterns
+
+String Properties:
+- Width: Variable (0.5px to 3px) based on tension/movement
+- Length: Calculated in real-time from landmark positions
+- Tension: Visual tightness effect based on hand movement speed
+- Opacity: 0.7 to 1.0, pulsing gently
+
+================================================================================
+                    NEON COLOR THEMES (CHOOSE ONE OR ROTATE)
+================================================================================
+
+THEME 1: CYBER NEON
+- Primary: Electric cyan #00FFFF
+- Secondary: Hot magenta #FF00FF
+- Accent: Lime green #00FF00
+- Glow: Cyan with magenta shadows
+- How it flows: Colors shift along string like flowing electricity
+
+THEME 2: DREAM PASTEL NEON
+- Primary: Soft pink #FF77FF
+- Secondary: Sky blue #77FFFF
+- Accent: Lavender #DD77FF
+- Glow: Soft dreamy haze
+- How it flows: Smooth color transitions like watercolor
+
+THEME 3: FIRE NEON
+- Primary: Bright orange #FF6600
+- Secondary: Deep red #FF0033
+- Accent: Yellow #FFFF00
+- Glow: Orange with red shadows
+- How it flows: Like flames dancing
+
+THEME 4: OCEAN NEON
+- Primary: Deep cyan #0088FF
+- Secondary: Aqua #00FFFF
+- Accent: Electric blue #0044FF
+- Glow: Blue with cyan shimmer
+- How it flows: Like water ripples
+
+THEME 5: GALAXY NEON
+- Primary: Purple #BB00FF
+- Secondary: Pink #FF00BB
+- Accent: Teal #00FFBB
+- Glow: Purple with pink glow
+- How it flows: Cosmic energy
+
+IMPLEMENTATION:
+- Use CSS custom properties for theme colors
+- Allow user to CYCLE through themes with spacebar press
+- Store selected theme in browser memory
+- Smooth color transitions (0.5s) when theme changes
+- Display current theme name on UI
+
+================================================================================
+                  GESTURE DETECTION & PATTERN TRANSFORMATION
+================================================================================
+
+GESTURE 1: HANDS APART (Open Position)
+- Fingers spread wide on both hands
+- Detection: Fingertip distance > 100px from palm
+- Visual Result:
+  * Strings stretch taut and glow brightly
+  * All cross-hand strings activate
+  * Particles emit from each fingertip like sparks
+  * Create 8-point symmetry pattern
+  * Color: Primary neon color at full brightness
+  * Add pulsing glow effect
+- Action: "Constellation" pattern appears
+
+GESTURE 2: HANDS CLOSE TOGETHER (Cradle Formation)
+- Both hands close together, fingers interlaced or parallel
+- Detection: Distance between hand centers < 150px
+- Visual Result:
+  * Strings form tight diamond/square patterns
+  * Colors shift to secondary theme color
+  * Create kaleidoscope effect (6-point or 8-point symmetry)
+  * Strings pulse like a heartbeat
+  * Add harmonic ripple effect emanating from center
+- Action: "Mandala" pattern appears
+
+GESTURE 3: HANDS ROTATING (Spinning Motion)
+- Either hand or both hands rotating around wrist
+- Detection: Calculate angular velocity of hand landmarks
+- Visual Result:
+  * Strings trail with motion blur effect
+  * Colors cycle through spectrum
+  * Create spiral patterns
+  * Add rotation animation to the entire pattern
+  * Draw Lissajous curves
+- Action: "Spiral Galaxy" pattern appears
+
+GESTURE 4: HANDS WEAVING (Moving past each other)
+- Hands moving in opposite directions while close
+- Detection: Calculate relative hand velocity vectors
+- Visual Result:
+  * Strings visually "weave" over/under each other
+  * Create 3D depth illusion
+  * Colors alternate between hands
+  * Add cross-fade effects
+  * Show depth layers with opacity
+- Action: "Woven Tapestry" pattern appears
+
+GESTURE 5: PINCH GESTURE (Thumb and finger touching)
+- Any finger touching thumb tip
+- Detection: Distance between thumb and finger < 20px
+- Visual Result:
+  * Tight geometric pattern forms at pinch point
+  * Fine detailed strings create mandala
+  * Colors shift to accent color
+  * Emit pulse wave from pinch point
+  * Draw perfect geometric shapes (hexagon, circle, etc.)
+- Action: "Sacred Geometry" pattern appears
+
+GESTURE 6: SINGLE HAND (One hand up, one down)
+- Only one hand visible or one hand active
+- Detection: One hand confidence score > 0.8, other < 0.3
+- Visual Result:
+  * Single hand patterns with circular symmetry
+  * Strings form spiral from palm to fingertips
+  * Colors pulse outward from center
+  * Create Flower of Life pattern
+  * Draw radiating lines like flower petals
+- Action: "Flower Pattern" appears
+
+GESTURE 7: HAND FLIP (Palm up to palm down rotation)
+- Hand rotating from palm-up to palm-down
+- Detection: Y-axis rotation of hand > 60 degrees
+- Visual Result:
+  * Strings flip and invert
+  * Colors invert (inverse on color wheel)
+  * Create mirror effect
+  * Add dramatic transformation animation
+  * Draw symmetric reflection
+- Action: "Mirror Flip" pattern
+
+================================================================================
+                    PATTERN GENERATION ALGORITHMS
+================================================================================
+
+CONSTELLATION PATTERN (Hands Apart):
+- Draw points at each fingertip location
+- Connect fingertips in sequence: thumb→index→middle→ring→pinky→thumb
+- Add cross-hand connections (left thumb ↔ right thumb, etc.)
+- Draw radiating lines from palm center to each fingertip
+- Add small glowing circles at each connection point
+- Generate particles that drift along the strings
+
+MANDALA PATTERN (Hands Close):
+- Detect hand center point
+- Create concentric circles around hand center
+- Divide into 6 or 8 equal sections (based on finger count)
+- Fill each section with radiating lines
+- Use symmetry to mirror patterns
+- Color each section with shifting theme colors
+- Add rotating animation
+
+SPIRAL GALAXY (Hands Rotating):
+- Use hand rotation angle to create spiral formula
+- Draw Archimedean spiral (r = a + b*θ)
+- Track fingertips along spiral
+- Color changes with rotation speed
+- Add trailing motion blur
+- Emit particles along spiral path
+
+WOVEN TAPESTRY (Hands Weaving):
+- Create interlocking loop patterns
+- Draw first hand pattern on layer 1
+- Draw second hand pattern on layer 2
+- Use opacity to show weaving (over/under effect)
+- Animate the layering to show actual weaving motion
+- Add interconnecting threads
+
+SACRED GEOMETRY (Pinch Gesture):
+- Draw perfect hexagon at pinch point
+- Inscribe circle within hexagon
+- Create Flower of Life (overlapping circles)
+- Draw seed patterns (interlocking circles)
+- Emit pulse waves at regular intervals
+- Colors follow sacred geometry color rules
+
+FLOWER PATTERN (Single Hand):
+- Palm center = flower center
+- Each fingertip = one petal
+- Draw curves connecting palm to fingertips
+- Create petal shapes
+- Add inner flower with opposite rotation
+- Draw stamens (radiating lines)
+- Animate petal opening/closing with hand movement
+
+MIRROR FLIP (Hand Flip):
+- Detect palm orientation change
+- Mirror all strings across vertical or horizontal axis
+- Animate the transformation
+- Flash with bright accent color during flip
+- Add particle explosion
+- Change pattern smoothly
+
+================================================================================
+                        VISUAL EFFECTS & ENHANCEMENTS
+================================================================================
+
+STRING RENDERING:
+- Width variation: Thicker strings show "taut" positions
+- Glow effect: 2-5px blur with theme color
+- Trail effect: Fade lines behind moving hands
+- Opacity animation: Gentle 0.5-1.0 pulsing
+- Antialiasing: Use shadowBlur for smooth edges
+- Color gradients: Strings have gradient along length (start/end colors)
+
+PARTICLE SYSTEM:
+- Emit particles from:
+  * Each fingertip (3-8 particles per gesture)
+  * Along strings (1 particle per 50px of string)
+  * At connection points
+- Particle properties:
+  * Size: 1-3px
+  * Color: Match current theme (with slight variation)
+  * Lifetime: 1-3 seconds
+  * Velocity: Float upward gently or follow string
+  * Glow: Each particle has subtle glow
+- Emission rates:
+  * High when hands move fast (hand velocity > 500px/s)
+  * Low when hands still
+  * Burst effect when patterns change
+
+GLOW & LIGHTING:
+- Use canvas shadowColor and shadowBlur
+- Create "light source" at hand center
+- Radial glow that extends 300-400px
+- Brighten strings near light source
+- Dim strings far from light source
+- Add subtle flicker (like flickering neon)
+- Screen glow effect on canvas overlay
+
+COLOR TRANSITIONS:
+- When gesture changes: 0.3s transition to new colors
+- Smooth easing function (ease-in-out)
+- Don't snap colors (always animate change)
+- Allow theme cycling: Press SPACEBAR to change theme
+- Smooth theme transitions: 1s color crossfade
+- Color saturation follows gesture intensity
+
+ANIMATION QUALITIES:
+- All animations smooth and continuous
+- No janky frame skipping
+- Easing functions: cubic-bezier(0.25, 0.46, 0.45, 0.94)
+- Frame rate: 60fps minimum
+- Use requestAnimationFrame for smooth updates
+
+================================================================================
+                            USER INTERFACE DESIGN
+================================================================================
+
+LAYOUT:
+- Full-screen canvas background
+- Minimal UI overlays
+- Dark semi-transparent panels for information
+- Icons and text for gesture hints
+
+VIDEO FEED (Top Right):
+- Show camera feed in corner (220x165px)
+- Rounded border with neon glow
+- Semi-transparent black background
+- Border color matches current theme
+- Add FPS counter inside feed
+
+STATUS DISPLAY (Top Left):
+- Current gesture name: "CONSTELLATION PATTERN"
+- Hand detection status: "Hands Detected (2/2)" or "Waiting..."
+- Pattern name and description
+- Font: Bold monospace, uppercase
+- Colors: Cyan text, white labels
+- Update in real-time
+
+THEME INDICATOR (Top Center):
+- Show current color theme name
+- Small color swatch showing primary color
+- "Press SPACEBAR to change theme"
+- Subtle and non-intrusive
+
+INSTRUCTION PANEL (Bottom Left):
+- Bordered panel with neon glow
+- List of gestures and corresponding patterns:
+  * "HANDS APART → Constellation"
+  * "HANDS CLOSE → Mandala"
+  * "ROTATE HAND → Spiral Galaxy"
+  * "WEAVE HANDS → Woven Tapestry"
+  * "PINCH → Sacred Geometry"
+  * "SINGLE HAND → Flower"
+  * "FLIP HAND → Mirror Flip"
+- Font: Small monospace
+- Opacity: 0.6 when not interacting, 0.9 on hover
+- Color: Current theme primary color
+
+PARTICLE COUNTER (Top Right Corner):
+- "PARTICLES: 1247"
+- "STRINGS: 34"
+- Real-time update
+- Small text, transparent background
+- Matches theme color
+
+LOADING STATE:
+- Smooth fade-in loading animation
+- Loading spinner (rotating circle with gradient)
+- Text: "Initializing Hand Detection..."
+- Theme loading state with pulsing effect
+- Allow exit if camera not available
+
+HELP OVERLAY:
+- Press H key to toggle help
+- Semi-transparent dark overlay
+- Display all gesture controls
+- Show keyboard shortcuts:
+  * SPACEBAR = Change Theme
+  * H = Toggle Help
+  * R = Reset Camera
+  * P = Pause/Resume
+  * S = Screenshot (save pattern)
+  * CLICK = Freeze Pattern (optional)
+
+================================================================================
+                        CAMERA & TECHNICAL SETUP
+================================================================================
+
+Camera Requirements:
+- Request camera with 640x480 minimum resolution
+- Mirror video horizontally (user's perspective)
+- Request permissions gracefully
+- Show clear error messages if camera denied
+- Allow manual "Request Camera" button
+
+Hand Detection:
+- Use MediaPipe Hands model
+- Import from CDN: @mediapipe/hands, @tensorflow-models/hand-pose-detection
+- Confidence threshold: 0.7
+- Detect up to 2 hands
+- Calculate landmarks 60 times per second
+- Smooth landmarks with low-pass filter (reduce jitter)
+
+Performance Optimization:
+- Cap at 60fps
+- Use OffscreenCanvas if available
+- Draw only visible elements
+- Batch particle updates
+- Use requestAnimationFrame
+- Profile with DevTools to maintain 60fps
+
+Error Handling:
+- Camera not available → Show message + try button
+- Hand detection failed → Show loading state
+- Browser unsupported → Show compatibility message
+- Recover gracefully from any errors
+- Log errors to console for debugging
+
+================================================================================
+                        COLOR THEME IMPLEMENTATION
+================================================================================
+
+CSS Variables Setup:
+Create theme system using CSS custom properties:
+
+:root {
+  --theme-primary: #00FFFF;
+  --theme-secondary: #FF00FF;
+  --theme-accent: #00FF00;
+  --theme-dark-bg: #0a0a2e;
+  --theme-glow: rgba(0, 255, 255, 0.5);
+}
+
+Theme Objects in JavaScript:
+Create theme configurations:
+
+const themes = [
+  {
+    name: "CYBER NEON",
+    primary: "#00FFFF",
+    secondary: "#FF00FF",
+    accent: "#00FF00",
+    description: "Electric cyber reality"
+  },
+  {
+    name: "DREAM PASTEL",
+    primary: "#FF77FF",
+    secondary: "#77FFFF",
+    accent: "#DD77FF",
+    description: "Soft dreamy haze"
+  },
+  // ... more themes
+];
+
+Theme Switching:
+- Store current theme index
+- On SPACEBAR press: theme_index = (theme_index + 1) % themes.length
+- Update all color variables
+- Animate transition over 1 second
+- Update UI displays with new colors
+
+================================================================================
+                      GESTURE DETECTION ALGORITHMS
+================================================================================
+
+Helper Functions Needed:
+
+1. calculateDistance(point1, point2):
+   - Euclidean distance between two landmarks
+   - return Math.sqrt((x2-x1)² + (y2-y1)²)
+
+2. calculateHandSpread(hand):
+   - Average distance from palm center to all fingertips
+   - return average of [distance(palm, thumb), distance(palm, index), ...]
+
+3. isHandOpen(hand):
+   - return calculateHandSpread(hand) > threshold (100px)
+
+4. calculateHandRotation(hand, previousHand):
+   - Compare palm normal vector between frames
+   - return angle in degrees
+
+5. detectPinch(hand):
+   - Check if any finger tip distance < 20px from thumb tip
+   - return pinched_finger_index or null
+
+6. calculateHandVelocity(hand, previousHand):
+   - Compare palm position between frames
+   - return pixels_per_frame
+
+7. calculateInterHandDistance(hand1, hand2):
+   - Distance between hand centers
+   - return distance
+
+8. drawString(x1, y1, x2, y2, color, thickness, tension):
+   - Draw line with glow, gradient, and effects
+   - Handle all visual properties
+
+GESTURE DETECTION LOGIC:
+
+function detectCurrentGesture(hands, previousHands) {
+  
+  if (hands.length === 0) return null;
+  if (hands.length === 1) return "SINGLE_HAND";
+  
+  const hand1 = hands[0];
+  const hand2 = hands[1];
+  
+  const spread1 = calculateHandSpread(hand1);
+  const spread2 = calculateHandSpread(hand2);
+  const interDistance = calculateInterHandDistance(hand1, hand2);
+  const velocity1 = calculateHandVelocity(hand1, previousHands[0]);
+  const velocity2 = calculateHandVelocity(hand2, previousHands[1]);
+  
+  // HANDS APART check
+  if (spread1 > 90 && spread2 > 90 && interDistance > 200) {
+    return "HANDS_APART"; // CONSTELLATION
+  }
+  
+  // HANDS CLOSE check
+  if (interDistance < 150) {
+    return "HANDS_CLOSE"; // MANDALA
+  }
+  
+  // ROTATING check
+  const rot1 = calculateHandRotation(hand1, previousHands[0]);
+  const rot2 = calculateHandRotation(hand2, previousHands[1]);
+  if (Math.abs(rot1) > 40 || Math.abs(rot2) > 40) {
+    return "ROTATING"; // SPIRAL
+  }
+  
+  // WEAVING check (hands moving opposite directions while close)
+  if (interDistance < 200 && velocity1 > 300 && velocity2 > 300) {
+    if (velocity1.direction opposite velocity2.direction) {
+      return "WEAVING"; // TAPESTRY
+    }
+  }
+  
+  // PINCH check
+  const pinch1 = detectPinch(hand1);
+  const pinch2 = detectPinch(hand2);
+  if (pinch1 !== null || pinch2 !== null) {
+    return "PINCH"; // SACRED GEOMETRY
+  }
+  
+  // DEFAULT
+  return "IDLE";
+}
+
+================================================================================
+                    PATTERN GENERATION - DETAILED CODE STRUCTURE
+================================================================================
+
+CLASS: PatternGenerator
+
+Methods:
+
+drawConstellation(hands, theme):
+  - For each hand:
+    * Draw circle at each fingertip
+    * Connect adjacent fingertips with strings
+    * Connect palm to each fingertip
+  - For both hands:
+    * Connect matching fingertips (L thumb ↔ R thumb, etc.)
+  - Color: Primary theme color
+  - Add particles along strings
+  - Add gentle pulsing animation to glow
+
+drawMandala(hands, theme):
+  - Find center point between hands
+  - Draw concentric circles (5-7 circles, radius 50px to 300px)
+  - Divide into 8 sections (matching finger count)
+  - In each section, draw radiating lines
+  - Color: Alternate primary and secondary colors
+  - Add rotating animation (slow, smooth)
+  - Add harmonic ripple effect from center
+
+drawSpiralGalaxy(hands, theme):
+  - Calculate hand rotation velocity
+  - Create spiral with parametric equations:
+    * x = (a + b*θ) * cos(θ)
+    * y = (a + b*θ) * sin(θ)
+  - Draw spiral curve through fingertip positions
+  - Color: Spectrum gradient following rotation
+  - Add motion blur on spiral lines
+  - Emit particles along spiral
+  - Continuous rotation animation
+
+drawWovenTapestry(hands, theme):
+  - Layer 1 (opacity 0.8): Draw patterns for hand 1
+  - Layer 2 (opacity 0.6): Draw patterns for hand 2
+  - Create cross-connecting threads
+  - Animate opacity to show weaving motion
+  - Alternate colors (primary, secondary)
+  - Add depth effect with shadow
+  - Show "over/under" effect with visual layering
+
+drawSacredGeometry(hands, theme):
+  - Pinch location = geometry center
+  - Draw hexagon (6 sides)
+  - Inscribe circle
+  - Draw Flower of Life pattern:
+    * 6 circles around center circle
+    * Each overlapping with adjacent circles
+  - Color: Accent color from theme
+  - Add pulsing glow from center
+  - Emit pulse wave every 0.5 seconds
+  - Add geometric precision (perfect shapes)
+
+drawFlowerPattern(hand, theme):
+  - Palm center = flower center
+  - Fingertips = petal positions
+  - For each petal:
+    * Draw curved shape from palm to fingertip
+    * Curve outward slightly
+    * Color with gradient
+  - Draw inner flower with same structure rotated
+  - Add radiating lines (stamens) from center
+  - Animate petal opening/closing with hand height
+  - Color petals differently based on finger
+
+drawMirrorFlip(hands, theme):
+  - Detect flip axis (vertical or horizontal)
+  - Create mirrored pattern on other side
+  - Animate axis rotation during flip
+  - Flash bright during transformation
+  - Emit particle explosion at flip moment
+  - Change colors during animation
+  - Return to normal after flip complete
+
+================================================================================
+                          PARTICLE SYSTEM DETAILS
+================================================================================
+
+CLASS: Particle
+
+Properties:
+- x, y: Position
+- vx, vy: Velocity
+- size: Radius in pixels
+- color: RGBA color string
+- lifetime: Remaining frames (0-255)
+- maxLifetime: Total frames to display
+- alpha: Current opacity (0-1)
+- glowSize: Blur radius for glow effect
+- theme: Current theme color
+
+Methods:
+- update(): Update position based on velocity, apply gravity/buoyancy
+- draw(ctx): Render particle with glow effect
+- isAlive(): Return true if lifetime > 0
+
+Emission Rules:
+
+onGestureChange():
+  - Emit 30-50 particles from hand center
+  - Scatter velocity in all directions
+  - Duration: 200ms burst
+  - Color: Accent color from theme
+  - Size: 2-4px
+
+onHandMovement():
+  - If hand velocity > 300px/s:
+    * Emit 5-8 particles per frame
+    * From fingertip positions
+    * Direction: Opposite to hand movement
+    * Color: Primary theme color
+    * Size: 1-2px
+
+onStringCreation():
+  - For every 50px of string length:
+    * Emit 1 particle
+    * Position: Randomly along string
+    * Velocity: Gently drift upward
+    * Color: Primary or secondary (alternate)
+    * Size: 0.5-1px
+
+ParticlePool Management:
+- Maintain pool of ~500 pre-allocated particles
+- Reuse particles instead of creating/destroying
+- Cap active particles at 2000 maximum
+- Remove oldest particles when at capacity
+
+================================================================================
+                        CODE QUALITY & PERFORMANCE
+================================================================================
+
+File Structure:
+- Single HTML file (easiest distribution)
+- All CSS in <style> tag
+- All JavaScript in <script> tag
+- Load libraries from CDN
+
+Code Organization:
+- Main setup function: async function initialize()
+- Detection loop: async function detectAndRender()
+- Helper classes: Hand, Particle, PatternGenerator, Theme
+- Event listeners: setup keyboard, window resize, camera errors
+
+Comments & Documentation:
+- Comment every major function
+- Explain complex algorithms
+- Include expected input/output
+- Add section headers in code
+
+Performance Targets:
+- 60fps minimum (0-16ms per frame)
+- Camera input: 30fps (40ms updates acceptable)
+- Hand detection: Every other frame (30fps)
+- Particle updates: Every frame
+- String drawing: Every frame
+- Profile with Chrome DevTools
+- Use Performance API to measure frame times
+
+Memory Management:
+- Reuse particle objects (pool pattern)
+- Clear canvas efficiently
+- Avoid creating objects in animation loop
+- Use typed arrays where possible
+- Monitor memory usage (should not grow unbounded)
+
+Browser Compatibility:
+- Chrome/Edge: Full support
+- Firefox: Full support
+- Safari: Test thoroughly (some WebGL issues possible)
+- Mobile: Test on iPad/Android with camera
+- Minimum: ES2015 JavaScript features
+
+================================================================================
+                          IMPLEMENTATION CHECKLIST
+================================================================================
+
+CORE FUNCTIONALITY:
+☐ MediaPipe hand detection setup
+☐ Camera access and permission handling
+☐ Hand landmark tracking (both hands)
+☐ Gesture detection algorithm
+☐ Pattern generation for each gesture
+☐ String rendering with glow effects
+☐ Particle system implementation
+☐ Theme system with 5+ color themes
+
+VISUAL FEATURES:
+☐ Neon glowing strings
+☐ Smooth color gradients along strings
+☐ Particle emission and animation
+☐ Glow lighting effects
+☐ Motion blur trails
+☐ Pattern transformation animations
+☐ Theme color smooth transitions
+☐ Background cosmic aesthetic
+
+USER INTERFACE:
+☐ Video feed display (top right)
+☐ Status display (top left)
+☐ Theme indicator (top center)
+☐ Instruction panel (bottom left)
+☐ Particle/string counter
+☐ Loading state
+☐ Help overlay (press H)
+☐ Error messages with recovery
+
+INTERACTIONS:
+☐ SPACEBAR to change theme
+☐ H to toggle help
+☐ R to reset camera
+☐ P to pause/resume
+☐ S to save screenshot
+☐ Gesture detection working smoothly
+☐ Real-time pattern changes
+☐ Smooth animations throughout
+
+PERFORMANCE:
+☐ 60fps consistent frame rate
+☐ No memory leaks
+☐ Efficient canvas rendering
+☐ Optimized hand detection
+☐ Particle pool management
+☐ Handles 2000+ particles smoothly
+
+TESTING:
+☐ Test all gestures
+☐ Test all color themes
+☐ Test on mobile devices
+☐ Test camera permissions
+☐ Test error states
+☐ Performance testing
+☐ Cross-browser testing
+☐ Memory profiling
+
+================================================================================
+                        FINAL INSTRUCTION FOR CLAUDE
+================================================================================
+
+Build this NEON CAT'S CRADLE PATTERN WEAVER with MAXIMUM POLISH and CREATIVITY.
+
+This is not a simple hand detection demo. This is INTERACTIVE DIGITAL ART.
+
+KEY PRIORITIES:
+1. Make the neon strings absolutely STUNNING - they should glow and shimmer
+2. Make pattern transformations SMOOTH and MAGICAL - never jarring
+3. Make gesture detection RESPONSIVE and ACCURATE - real-time feel
+4. Make colors VIBRANT and NEON - not washed out or dull
+5. Make it FUN to play with - people should smile when using it
+6. Make it PROFESSIONAL - polished edges, smooth animations, clean code
+
+AESTHETIC REQUIREMENTS:
+- Every frame should feel alive and magical
+- Strings should glow and pulse with neon energy
+- Particles should float and dance beautifully
+- Colors should pop off the screen
+- Animations should be smooth (60fps minimum)
+- Users should feel like they're literally weaving light
+
+DELIVERY:
+- Single HTML file
+- Works immediately in any modern browser
+- Requires only camera access
+- No external dependencies except CDN libraries
+- Clear, well-commented code
+- Comprehensive error handling
+- Responsive to all gestures
+
+TONE OF DELIVERY:
+Make something that will make people go "WOW." When someone first sees this
+running, they should be amazed. Make them want to share it with friends.
+Make them want to spend time playing with it.
+
+This is your opportunity to create something truly special. Don't hold back.
+Go big. Go bold. Make it EXTRAORDINARY.
+
+================================================================================
+                            READY TO BUILD
+================================================================================
+
+This prompt is comprehensive and detailed. It includes:
+- Complete aesthetic vision
+- All gesture definitions
+- Pattern generation algorithms
+- Color theme specifications
+- UI layout and components
+- Performance requirements
+- Code structure guidelines
+- Implementation checklist
+- Priority guidelines
+
+Copy this ENTIRE text and paste it into Claude Opus or Claude Sonnet.
+Claude will understand exactly what to build and create something amazing.
+
+Questions about this prompt? It's designed to be complete enough that Claude
+can build the full application with high quality and visual polish.
+
+Good luck! Have fun with your neon cat's cradle weaver!
+
+================================================================================
