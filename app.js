@@ -409,6 +409,21 @@ class App {
                 case 'Escape': document.getElementById('help-overlay').style.display = 'none'; break;
             }
         });
+
+        // Mobile Button Listeners
+        document.getElementById('btn-mode').addEventListener('click', () => {
+            this.mode = this.mode === 'WEAVER' ? 'OBJECT' : 'WEAVER';
+            document.getElementById('app-mode').innerText = this.mode;
+        });
+        document.getElementById('btn-theme').addEventListener('click', () => this.themeManager.cycle());
+        document.getElementById('btn-sym').addEventListener('click', () => {
+            this.engine.symmetry = this.engine.symmetry === 1 ? 4 : (this.engine.symmetry === 4 ? 6 : 1);
+        });
+        document.getElementById('btn-harm').addEventListener('click', () => this.engine.useHarmonics = !this.engine.useHarmonics);
+        document.getElementById('btn-help').addEventListener('click', () => {
+            const help = document.getElementById('help-overlay');
+            help.style.display = help.style.display === 'flex' ? 'none' : 'flex';
+        });
     }
 
     onHandResults(results) {

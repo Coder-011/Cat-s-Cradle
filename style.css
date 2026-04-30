@@ -247,6 +247,95 @@ canvas#main-canvas {
     text-align: center;
 }
 
+/* Mobile Controls Dock */
+#mobile-controls {
+    display: none;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    background: var(--theme-panel);
+    border-radius: 30px;
+    box-shadow: 0 0 30px var(--theme-glow);
+}
+
+#mobile-controls button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid var(--theme-primary);
+    background: transparent;
+    color: var(--theme-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+#mobile-controls button:active {
+    background: var(--theme-primary);
+    color: #000;
+    transform: scale(0.9);
+}
+
+/* Responsive Overrides */
+@media screen and (max-width: 768px) {
+    .instructions-panel {
+        display: none;
+    }
+
+    #mobile-controls {
+        display: flex;
+    }
+
+    .video-panel {
+        top: auto;
+        bottom: 90px;
+        right: 20px;
+    }
+
+    #video-input {
+        width: 120px;
+        height: 90px;
+    }
+
+    .header {
+        top: 10px;
+        left: 10px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .status-panel {
+        top: 70px;
+        left: 10px;
+        min-width: 180px;
+    }
+
+    .status-value {
+        font-size: 12px;
+    }
+
+    .theme-panel {
+        top: 10px;
+        left: auto;
+        right: 150px;
+        transform: none;
+        padding: 5px 10px;
+    }
+
+    .theme-name {
+        font-size: 10px;
+    }
+}
+
 /* Particles Background Animation */
 @keyframes starPulse {
     0%, 100% { opacity: 0.3; }
